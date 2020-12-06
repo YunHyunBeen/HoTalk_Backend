@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.congandelly.hotalkbackend.mapper.user.UserMasterMapper">
+    <select id="selectAll" resultType="UserMaster">
+        SELECT 1, user_id
+        	FROM USER_MASTER
+    </select>
+    
+    <select id="selectOne" parameterType="String" resultType="UserMaster">
+        SELECT * 
+        	FROM USER_MASTER
+           WHERE 1=1
+             AND USER_ID = #{userId}
+    </select>    
+    
+    <insert id="insertUser" parameterType="UserMaster">
+        INSERT INTO USER_MASTER (
+            USER_ID,
+            USER_PW
+        ) VALUES (
+            #{userId},
+            #{userPw}
+        )
+    </insert>
+    
+    <update id="updateUser" parameterType="UserMaster">
+        UPDATE USER_MASTER
+        SET 
+            USER_ID = #{userId},
+            USER_PW = #{userPw},
+           WHERE 1=1
+             AND USER_ID = #{userId}
+    </update>
+    
+    <delete id = "deleteUser" parameterType="int">
+        DELETE 
+        	FROM USER_MASTER 
+           WHERE 1=1
+             AND USER_ID = #{userId}
+    </delete>
+</mapper>
